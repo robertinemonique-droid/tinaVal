@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>He Said Yes!</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:url("mee.jpg") center/cover no-repeat;
+    font-family:Arial, sans-serif;
+    text-align:center;
+    padding:20px;
+    position:relative;
+    color:white;
+}
+
+/* OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(4px);
+    z-index:1;
+}
+
+/* MESSAGE BOX */
+.messageBox{
+    background:rgba(0,0,0,0.55);
+    border-radius:25px;
+    padding:25px;
+    max-width:420px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 25px rgba(255,255,255,0.2);
+    animation:popIn 1.2s ease forwards;
+    z-index:3;
+    position:relative;
+}
+
+.messageBox h1{
+    animation:fadeSlide 2s ease forwards;
+    margin-bottom:10px;
+}
+
+.messageBox p{
+    animation:fadeSlide 2.5s ease forwards;
+}
+
+/* EMOJIS */
+.emoji{
+    position:fixed;
+    bottom:-40px;
+    font-size:30px;
+    animation:floatUp linear forwards;
+    z-index:2;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes popIn{
+    from{transform:scale(0.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+@keyframes fadeSlide{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="messageBox">
+<h1>HEY VALSTIE ❤️🔥</h1>
+<p> At your disposal valstie💋... what's on your mind big Daddy 🤤 </p>
+</div>
+
+
+<audio id="bgMusic" loop>
+    <source src="sika.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+  const music = document.getElementById("bgMusic");
+  // Try autoplay first
+  music.play().catch(() => {
+    // Music not started — wait for interaction
+    const playOnInteraction = () => {
+      music.play().then(() => {
+        // Hide hint smoothly when music starts
+        musicHint.style.opacity = '0';
+        setTimeout(() => musicHint.style.display = 'none', 600);
+      }).catch(() => {
+        // If still can't play, leave hint visible
+      });
+      // Remove event listeners after first interaction
+      document.removeEventListener('click', playOnInteraction);
+      document.removeEventListener('touchstart', playOnInteraction);
+    };
+
+    document.addEventListener('click', playOnInteraction);
+    document.addEventListener('touchstart', playOnInteraction);
+  });
+
+/* FLOATING EMOJIS */
+const emojis=["❤️","🔥","🎉","😍","✨","💖","💕","💘","🥰","🎊","🎈","💖","💕","💘","❤️","✨","🥰","🎉", "🎊", "🥳", "💃", "🕺", "✨", "🎈", "🎵"];
+
+function createEmoji(){
+    const e=document.createElement("div");
+    e.className="emoji";
+    e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(5+Math.random()*4)+"s";
+
+    document.body.appendChild(e);
+
+    setTimeout(()=>e.remove(),15000);
+}
+
+setInterval(createEmoji,900);
+
+/* WHATSAPP REDIRECT */
+setTimeout(()=>{
+window.location.href="https://wa.me/233507286324";
+},45000);
+
+</script>
+
+</body>
+</html>
+
+
+

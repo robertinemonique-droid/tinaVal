@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Val Player</title>
+<style>
+body{margin:0;overflow:hidden;}
+iframe{
+width:100vw;
+height:100vh;
+border:none;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" autoplay loop>
+<source src="sika.mp3" type="audio/mpeg">
+</audio>
+
+<iframe id="frame" src="index.html"></iframe>
+
+<script>
+const music=document.getElementById("bgMusic");
+
+/* start music after first interaction (mobile rule) */
+document.addEventListener("click",()=>{
+ music.play().catch(()=>{});
+},{once:true});
+
+/* allow pages to change iframe */
+window.addEventListener("message",(e)=>{
+ document.getElementById("frame").src=e.data;
+});
+</script>
+<script>
+function handleYes(){
+
+ /* SHOW YES SCREEN */
+ yesScreen.style.display="flex";
+
+ /* START EMOJIS */
+ startEmojiExplosion();
+}
+</script>
+
+</body>
+</html>
